@@ -1,30 +1,13 @@
-%%%%%%%%%%%%%%%%%
-% This is altacv.cls (v1.1.5, 1 December 2018) written by
-% LianTze Lim (liantze@gmail.com).
-%
-%% It may be distributed and/or modified under the
-%% conditions of the LaTeX Project Public License, either version 1.3
-%% of this license or (at your option) any later version.
-%% The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.3 or later is part of all distributions of LaTeX
-%% version 2003/12/01 or later.
-%%
-%%
-% Contributions:
-% - https://github.com/akreuzer Added ragged2e option (5 Nov 2018)
-% - https://github.com/stefanogermano Fixed bad boxes and undefined font shape (July 2018)
-% - https://github.com/foohyfooh Fixed blank spaces in \cvevent and bad link in README.md (June 2018)
-
-%%%%%%%%%%%%%%%%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 %% v1.4: Detect TL2018 to handle accented characters in class information
 \@ifl@t@r\fmtversion{2018/04/01}{\UseRawInputEncoding}{}
-\ProvidesClass{altacv}[2018/12/01 AltaCV v1.1.5, yet another alternative class for a résumé/curriculum vitae.]
+
+\ProvidesClass{Resume}[2018/12/01 Resume v1.0.0, Resume class for Alex Tacescu]
 
 %% v1.1: Optionally load academicons
 \newif\if@academicons
 \DeclareOption{academicons}{\@academiconstrue}
+
 %% v1.1.3: Choice of round/square photo
 \newif\if@normalphoto
 \DeclareOption{normalphoto}{\@normalphototrue}
@@ -52,8 +35,7 @@
   \fi
 \fi
 
-%% v1.1: Optionally load academicons
-%% v1.1.5: Handle different versions of academicons
+%% Handle different versions of academicons
 \if@academicons
   \ifxetexorluatex
     \RequirePackage{fontspec}
@@ -86,7 +68,7 @@
       }
     }
   \else
-    \ClassError{AltaCV}{academicons unsupported by latex or pdflatex. Please compile with xelatex or lualatex}{Please compile with xelatex or lualatex to use the academicons option}
+    \ClassError{Resume}{academicons unsupported by latex or pdflatex. Please compile with xelatex or lualatex}{Please compile with xelatex or lualatex to use the academicons option}
   \fi
 \fi
 
@@ -104,6 +86,7 @@
 \newcommand{\ratingmarker}{\faCircle}
 
 \RequirePackage{tikz}
+\RequirePackage{calc}
 \usetikzlibrary{arrows}
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{enumitem}
@@ -114,7 +97,8 @@
 \RequirePackage{dashrule}
 \RequirePackage{multirow,tabularx}
 \RequirePackage{changepage}
-% \RequirePackage{marginfix}
+\RequirePackage{hyperref}
+%\RequirePackage{marginfix}
 
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
@@ -133,32 +117,50 @@
 \newcommand{\orcidsymbol}{\aiOrcid}
 \newcommand{\mailsymbol}{\faEnvelope}
 
-\newcommand{\printinfo}[2]{\mbox{\textcolor{accent}{\normalfont #1}\hspace{0.5em}#2\hspace{2em}}}
+\newcommand{\printinfo}[2]{\mbox{\textcolor{heading}{\normalfont #1}\hspace{0.5em}#2}}
 
 \newcommand{\name}[1]{\def\@name{#1}}
-\newcommand{\tagline}[1]{\def\@tagline{#1}}
-\newcommand{\photo}[2]{\def\@photo{#2}\def\@photodiameter{#1}}
-\newcommand{\email}[1]{\printinfo{\emailsymbol}{#1}}
-\newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
-\newcommand{\phone}[1]{\printinfo{\phonesymbol}{#1}}
-\newcommand{\homepage}[1]{\printinfo{\homepagesymbol}{#1}}
-\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
-\newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
-\newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
-\newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
-\newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
+\newcommand{\phone}[1]{\def\@phone{\printinfo{\phonesymbol}{#1}}}
+\newcommand{\email}[1]{\def\@email{\href{mailto:#1}{\printinfo{\mailsymbol}{#1}}}}
+\newcommand{\website}[1]{\def\@website{\href{https://#1}{\printinfo{\homepagesymbol}{#1}}}}
+% \newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
 
-\newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
+%% Unused commands
+% \newcommand{\tagline}[1]{\def\@tagline{#1}}
+% \newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
+% \newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
+% \newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
+% \newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
+% \newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
+% \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
-\newcommand{\makecvheader}{%
+\newcommand{\makeheader}{
   \begingroup
     \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
     \raggedright\color{emphasis}%
-    {\Huge\bfseries\MakeUppercase{\@name}\par}
+    {\Huge\centering\bfseries\MakeUppercase{\@name}\par}
     \medskip
-    {\large\bfseries\color{accent}\@tagline\par}
+    {\color{heading}\rule{\linewidth}{2pt}\par}
     \medskip
-    {\footnotesize\bfseries\@personalinfo\par}
+    
+    \begin{minipage}{0.3\linewidth}
+        \large\bfseries\centering{\@phone}
+    \end{minipage}%
+    \begin{minipage}{0.05\linewidth}
+       \vline height 20pt depth 1pt width 2pt
+    \end{minipage}%
+    \begin{minipage}{0.3\linewidth}
+        \large\bfseries\centering{\@email}
+    \end{minipage}%
+    \begin{minipage}{0.05\linewidth}
+        \vline height 20pt depth 1pt width 2pt
+    \end{minipage}%
+    \begin{minipage}{0.3\linewidth}
+        \large\bfseries\centering{\@website}
+    \end{minipage}
+    
+    % {\large\bfseries\@personalinfo\par}
+    
     \ifdef{\@photodiameter}{%
     \end{minipage}\hfill%
     \begin{minipage}{\@photodiameter}
@@ -299,6 +301,25 @@
   \input{#2}}%
 }
 \newcommand{\addnextpagesidebar}[2][]{\afterpage{\addsidebar[#1]{#2}}}
+
+% Skills Circle
+\newlength{\outerradius}
+\newlength{\innerradius}
+\setlength{\outerradius}{1cm}
+\setlength{\innerradius}{0.8cm}
+\newcommand{\progresscircle}[2]{
+  \begin{tikzpicture}
+    \fill[black!80] (0,0) circle (\outerradius);
+    \fill[gray!70,draw=white,line width=2pt] (0,0) -- (0, \outerradius+1pt)
+      arc (90:90-3.6*#1:\outerradius+1pt) -- (0,0);
+    \fill[white] (0,0) circle (\innerradius);
+    \node[align=center, text width = 2*\innerradius] (0,0) { #2};
+  \end{tikzpicture}
+}
+%\progresscircle{85.34}{\textbf{Test 1} \\ seems okay} % Example 1
+
+%\progresscircle{41.57}{\textbf{Test 2}\\ this\\too\\} % Example 2
+
 
 \AtBeginDocument{%
   \pagestyle{empty}
