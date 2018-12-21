@@ -88,7 +88,7 @@
 \RequirePackage{tikz}
 \RequirePackage{calc}
 \usetikzlibrary{arrows}
-\RequirePackage[skins]{tcolorbox}
+\RequirePackage[skins,breakable]{tcolorbox}
 \RequirePackage{enumitem}
 \setlist{leftmargin=*,labelsep=0.5em,nosep,itemsep=0.25\baselineskip,after=\vskip0.25\baselineskip}
 \setlist[itemize]{label=\itemmarker}
@@ -132,9 +132,9 @@
 % \newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
 % \newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
 % \newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
-% \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
+\newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
-\newcommand{\makeheader}{
+\newcommand{\makeheading}{
   \begingroup
     \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
     \raggedright\color{emphasis}%
@@ -174,6 +174,13 @@
 }
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
+
+\newcommand{\resumesection}[2][]{
+  \bigskip
+  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}
+  {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]
+  {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+}
 
 \newcommand{\cvsection}[2][]{%
   \bigskip%
@@ -305,12 +312,12 @@
 % Skills Circle
 \newlength{\outerradius}
 \newlength{\innerradius}
-\setlength{\outerradius}{1cm}
+\setlength{\outerradius}{0.9cm}
 \setlength{\innerradius}{0.8cm}
 \newcommand{\progresscircle}[2]{
   \begin{tikzpicture}
     \fill[black!80] (0,0) circle (\outerradius);
-    \fill[gray!70,draw=white,line width=2pt] (0,0) -- (0, \outerradius+1pt)
+    \fill[accent!70,draw=white,line width=2pt] (0,0) -- (0, \outerradius+1pt)
       arc (90:90-3.6*#1:\outerradius+1pt) -- (0,0);
     \fill[white] (0,0) circle (\innerradius);
     \node[align=center, text width = 2*\innerradius] (0,0) { #2};

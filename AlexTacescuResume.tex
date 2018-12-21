@@ -21,7 +21,7 @@
 \fi
 
 % Change the page layout if you need to
-\geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1.25cm,bottom=1.25cm}
+% \geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1.25cm,bottom=1.25cm}
 
 % Change the font if you want to, depending on whether
 % you're using pdflatex or xelatex/lualatex
@@ -34,6 +34,14 @@
   \usepackage[T1]{fontenc}
   \usepackage[default]{lato}
 \fi
+
+\usepackage{multicol}
+\usepackage{parallel}
+\usepackage[skins,breakable]{tcolorbox}
+\usepackage{paracol}
+\usepackage{parcolumns}
+
+\raggedbottom
 
 % Set the desired heading colors
 \definecolor{headingColor}{HTML}{000000}
@@ -69,97 +77,68 @@
 }
 
 %% Make the header extend all the way to the right, if you want.
-\begin{fullwidth}
-\makeheader
-\end{fullwidth}
+% \begin{fullwidth}
+\makeheading
+% \end{fullwidth}
 
-%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
-\AtBeginEnvironment{itemize}{\small}
+\begin{parcolumns}[colwidths={1=0.62\textwidth, 2=0.35\textwidth}]{2}
+\colchunk{ 
+\input{Sections/Experience.tex} 
 
-%% Provide the file name containing the sidebar contents as an optional parameter to \cvsection.
-%% You can always just use \marginpar{...} if you do
-%% not need to align the top of the contents to any
-%% \cvsection title in the "main" bar.
-\cvsection[page1sidebar]{Experience}
-
-\cvevent{President \& CEO}{Yahoo!}{July 2012 -- Ongoing}{Sunnyvale, CA}
-\begin{itemize}
-\item Led the \$5 billion acquisition of the company with Verizon -- the entity which believed most in the immense value Yahoo!\ has created
-\item Acquired Tumblr for \$1.1 billion and moved the company's blog there
-\item Built Yahoo's mobile, video and social businesses from nothing in 2011 to \$1.6 billion in GAAP revenue in 2015
-\item Tripled the company's mobile base to over 600 million monthly active users and generated over \$1 billion of mobile advertising revenue last year
-\end{itemize}
-
-\divider
-
-\cvevent{Vice President of Location \& Services}{Google}{Oct 2010 -- July 2012}{Palo Alto, CA}
-\begin{itemize}
-\item Position Google Maps as the world leader in mobile apps and navigation
-\item Oversaw 1000+ engineers and product managers working on Google Maps, Google Places and Google Earth
-\end{itemize}
-
-\divider
-
-\cvevent{Vice President of Search Products \& UX}{Google}{2005 --  2010}{Palo Alto, CA}
-
-\divider
-
-\cvevent{Product Manager \& UI Lead}{Google}{Oct 2001 -- July 2005}{Palo Alto, CA}
-
-\begin{itemize}
-\item Appointed by the founder Larry Page in 2001 to lead the Product Management and User Interaction teams
-\item Optimized Google's homepage and A/B tested every minor detail to increase usability (incl.~spacing between words, color schemes and pixel-by-pixel element alignment)
-\end{itemize}
-
-% \divider
-
-% \cvevent{Product Engineer}{Google}{23 June 1999 -- 2001}{Palo Alto, CA}
-
-% \begin{itemize}
-% \item Joined the company as employe \#20 and female employee \#1
-% \item Developed targeted advertisement in order to use user's search queries and show them related ads
-% \end{itemize}
-
-\cvsection{A Day of My Life}
-
-% Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
-% \wheelchart{outer radius}{inner radius}{
-% comma-separated list of value/text width/color/detail}
-% Some ad-hoc tweaking to adjust the labels so that they don't overlap
-\wheelchart{1.5cm}{0.5cm}{%
-  10/10em/accent!30/Sleeping \& dreaming about work,
-  25/9em/accent!60/Public resolving issues with Yahoo!\ investors,
-  5/13em/accent!10/\footnotesize\\[1ex]New York \& San Francisco Ballet Jawbone board member,
-  20/15em/accent!40/Spending time with family,
-  5/8em/accent!20/\footnotesize Business development for Yahoo!\ after the Verizon acquisition,
-  30/9em/accent/Showing Yahoo!\ employees that their work has meaning,
-  5/8em/accent!20/Baking cupcakes
 }
+\colchunk{
 
-\clearpage
+    \input{Sections/QualificationsSummary.tex}
+    
+    \input{Sections/Education.tex}
+    
+    
+    % \cvachievement{\faTrophy}{Courage I had}{to take a sinking ship and try to make it float}
+    
+    % \divider
+    
+    % \cvachievement{\faHeartbeat}{Persistence \& Loyalty}{I showed despite the hard moments and my willingness to stay with Yahoo after the acquisition}
+    
+    % \divider
+    
+    % \cvachievement{\faLineChart}{Google's Growth}{from a hundred thousand searches per day to over a billion}
+    
+    % \divider
+    
+    % \cvachievement{\faFemale}{Inspiring women in tech}{Youngest CEO on Fortune's list of 50 most powerful women}
+    
+    % \cvsection{Strengths}
+    
+    % \cvtag{Hard-working (18/24)} 
+    % \cvtag{Persuasive}
+    % \cvtag{Motivator \& Leader}
+    
+    % \divider\smallskip
+    
+    % \cvtag{UX}
+    % \cvtag{Mobile Devices \& Applications}
+    % \cvtag{Product Management \& Marketing}
+    
+    % \cvsection{Languages}
+    
+    % \cvskill{English}{5}
+    % % \divider
+    
+    % \cvskill{Spanish}{4}
+    % % \divider
+    
+    % \cvskill{German}{3}
+    
+    
+    % \cvsection{Education}
+    
+    % \cvevent{M.S.\ in Computer Science}{Stanford University}{Sept 1997 -- June 1999}{}
+    
+    % \divider
+    
+    % \cvevent{B.S.\ in Symbolic Systems}{Stanford University}{Sept 1993 -- June 1997}{}
 
-\cvsection[page2sidebar]{Publications}
-
-\nocite{*}
-
-\printbibliography[heading=pubtype,title={\printinfo{\faBook}{Books}},type=book]
-
-\divider
-
-\printbibliography[heading=pubtype,title={\printinfo{\faFileTextO}{Journal Articles}}, type=article]
-
-\divider
-
-\printbibliography[heading=pubtype,title={\printinfo{\faGroup}{Conference Proceedings}},type=inproceedings]
-
-%% If the NEXT page doesn't start with a \cvsection but you'd
-%% still like to add a sidebar, then use this command on THIS
-%% page to add it. The optional argument lets you pull up the
-%% sidebar a bit so that it looks aligned with the top of the
-%% main column.
-% \addnextpagesidebar[-1ex]{page3sidebar}
-
-
-\progresscircle{85.34}{\textbf{Test 1} }
+}
+\end{parcolumns}
 
 \end{document}
