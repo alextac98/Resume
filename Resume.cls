@@ -123,15 +123,13 @@
 \newcommand{\phone}[1]{\def\@phone{\printinfo{\phonesymbol}{#1}}}
 \newcommand{\email}[1]{\def\@email{\href{mailto:#1}{\printinfo{\mailsymbol}{#1}}}}
 \newcommand{\website}[1]{\def\@website{\href{https://#1}{\printinfo{\homepagesymbol}{#1}}}}
-% \newcommand{\mailaddress}[1]{\printinfo{\mailsymbol}{#1}}
 
-%% Unused commands
-% \newcommand{\tagline}[1]{\def\@tagline{#1}}
-% \newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
-% \newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
-% \newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
-% \newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
-% \newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
+\newcommand{\tagline}[1]{\def\@tagline{#1}}
+\newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
+\newcommand{\linkedin}[1]{\printinfo{\linkedinsymbol}{#1}}
+\newcommand{\github}[1]{\printinfo{\githubsymbol}{#1}}
+\newcommand{\orcid}[1]{\printinfo{\orcidsymbol}{#1}}
+\newcommand{\location}[1]{\printinfo{\locationsymbol}{#1}}
 \newcommand{\personalinfo}[1]{\def\@personalinfo{#1}}
 
 \newcommand{\makeheading}{
@@ -143,19 +141,19 @@
     {\color{heading}\rule{\linewidth}{2pt}\par}
     \medskip
     
-    \begin{minipage}{0.3\linewidth}
+    \begin{minipage}{0.3\textwidth}
         \large\bfseries\centering{\@phone}
     \end{minipage}%
-    \begin{minipage}{0.05\linewidth}
-       \vline height 20pt depth 1pt width 2pt
+    \begin{minipage}{0.02\textwidth}
+       \vline height 20pt depth 0pt width 2pt
     \end{minipage}%
-    \begin{minipage}{0.3\linewidth}
+    \begin{minipage}{0.36\textwidth}
         \large\bfseries\centering{\@email}
     \end{minipage}%
-    \begin{minipage}{0.05\linewidth}
-        \vline height 20pt depth 1pt width 2pt
+    \begin{minipage}{0.02\textwidth}
+        \vline height 20pt depth 0pt width 2pt
     \end{minipage}%
-    \begin{minipage}{0.3\linewidth}
+    \begin{minipage}{0.3\textwidth}
         \large\bfseries\centering{\@website}
     \end{minipage}
     
