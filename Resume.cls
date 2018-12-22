@@ -98,7 +98,7 @@
 \RequirePackage{multirow,tabularx}
 \RequirePackage{changepage}
 \RequirePackage{hyperref}
-%\RequirePackage{marginfix}
+\RequirePackage{paracol}
 
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
@@ -141,19 +141,19 @@
     {\color{heading}\rule{\linewidth}{2pt}\par}
     \medskip
     
-    \begin{minipage}{0.3\textwidth}
+    \begin{minipage}{0.31\textwidth}
         \large\bfseries\centering{\@phone}
     \end{minipage}%
     \begin{minipage}{0.02\textwidth}
        \vline height 20pt depth 0pt width 2pt
     \end{minipage}%
-    \begin{minipage}{0.36\textwidth}
+    \begin{minipage}{0.34\textwidth}
         \large\bfseries\centering{\@email}
     \end{minipage}%
     \begin{minipage}{0.02\textwidth}
         \vline height 20pt depth 0pt width 2pt
     \end{minipage}%
-    \begin{minipage}{0.3\textwidth}
+    \begin{minipage}{0.31\textwidth}
         \large\bfseries\centering{\@website}
     \end{minipage}
     
@@ -173,27 +173,55 @@
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
-\newcommand{\resumesection}[2][]{
-  \bigskip
-  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}
-  {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]
-  {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+% \newcommand{\resumesection}[2]{{%
+%   \par\bigskip
+%   \setlength{\arrayrulewidth}{1pt}%
+%   \color{heading}%
+%   \noindent\begin{tabularx}{\linewidth}{@{} X @{}}
+%     \LARGE\bfseries\MakeUppercase{#1}\hfill\normalsize\bfseries #2 \\
+%     \hline
+%   \end{tabularx}%
+%   \par\nobreak\medskip
+% }}
+
+\newcommand{\resumesection}[2]{
+    \noindent
+    {\color{heading}\Large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[2mm]
+    {\color{heading}\rule{\linewidth}{1pt}\par}
 }
 
-\newcommand{\cvsection}[2][]{%
-  \bigskip%
-  \ifstrequal{#1}{}{}{\marginpar{\vspace*{\dimexpr1pt-\baselineskip}\raggedright\input{#1}}}%
-  {\color{heading}\LARGE\bfseries\MakeUppercase{#2}}\\[-1ex]%
-  {\color{heading}\rule{\linewidth}{2pt}\par}\medskip
+\newcommand{\cvsection}[2]{
+    \bigskip\noindent
+    {\color{heading}\LARGE\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2} \\[-0.6\baselineskip]}
+    {\color{heading}\rule{\textwidth}{1pt}\par}
 }
 
-\newcommand{\cvsubsection}[1]{%
-  \smallskip%
-  {\color{emphasis}\large\bfseries{#1}\par}\medskip
+\newcommand{\resumesubsection}[1]{%
+  {\color{emphasis}\bfseries{#1}}
 }
+
+\newcommand{\skillsection}[2]{
+    \resumesubsection{#1:} {#2}
+}
+
+% Skills Circle
+\newlength{\outerskill}
+\newlength{\innerskill}
+\setlength{\outerskill}{0.9cm}
+\setlength{\innerskill}{0.8cm}
+\newcommand{\skillcircle}[2]{
+  \begin{tikzpicture}
+    \fill[black!80] (0,0) circle (\outerskill);
+    \fill[accent!70,draw=white,line width=2pt] (0,0) -- (0, \outerskill+1pt)
+      arc (90:90-3.6*#1:\outerskill+1pt) -- (0,0);
+    \fill[white] (0,0) circle (\innerskill);
+    \node[align=center, text width = 2*\innerskill] (0,0) { #2};
+  \end{tikzpicture}
+}
+%\progresscircle{85.34}{\textbf{Test 1} \\ seems okay} % Example 1
 
 % v1.1.4: fixes inconsistent font size
-\newcommand{\cvevent}[4]{%
+\newcommand{\event}[4]{%
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
   \ifstrequal{#2}{}{}{
@@ -226,7 +254,7 @@
 \newcommand{\wheelchart}[4][0]{%
     \begingroup\centering
     \def\innerradius{#3}%
-    \def\outerradius{#2}%
+    \def\#3{#2}%
     % Calculate total
     \pgfmathsetmacro{\totalnum}{0}%
     \foreach \value/\colour/\name in {#4} {%
@@ -307,21 +335,7 @@
 }
 \newcommand{\addnextpagesidebar}[2][]{\afterpage{\addsidebar[#1]{#2}}}
 
-% Skills Circle
-\newlength{\outerradius}
-\newlength{\innerradius}
-\setlength{\outerradius}{0.9cm}
-\setlength{\innerradius}{0.8cm}
-\newcommand{\progresscircle}[2]{
-  \begin{tikzpicture}
-    \fill[black!80] (0,0) circle (\outerradius);
-    \fill[accent!70,draw=white,line width=2pt] (0,0) -- (0, \outerradius+1pt)
-      arc (90:90-3.6*#1:\outerradius+1pt) -- (0,0);
-    \fill[white] (0,0) circle (\innerradius);
-    \node[align=center, text width = 2*\innerradius] (0,0) { #2};
-  \end{tikzpicture}
-}
-%\progresscircle{85.34}{\textbf{Test 1} \\ seems okay} % Example 1
+
 
 %\progresscircle{41.57}{\textbf{Test 2}\\ this\\too\\} % Example 2
 
