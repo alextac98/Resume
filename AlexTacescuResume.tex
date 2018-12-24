@@ -1,146 +1,64 @@
-\RequirePackage{ifxetex,ifluatex}
-\newif\ifxetexorluatex
-\ifxetex
-  \xetexorluatextrue
-\else
-  \ifluatex
-    \xetexorluatextrue
-  \else
-    \xetexorluatexfalse
-  \fi
-\fi
-
-% Checks to see if correct compiler, then enables academicons
-%% See texdoc.net/pkg/fontawecome and http://texdoc.net/pkg/academicons for full list of symbols. You MUST compile with XeLaTeX or LuaLaTeX if you want to use academicons.
-\ifxetexorluatex
-    \documentclass[10pt,letterpaper,ragged2e, academicons]{Resume}
-    % "normalphoto" => Normal photo, not cropped
-    % "ragged2e"    => Cropped photo to circle
-\else
-    \documentclass[10pt, letterpaper, ragged2e]{Resume}
-\fi
-
-% Change the page layout if you need to
-% \geometry{left=1cm,right=9cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1.25cm,bottom=1.25cm}
-
-% Change the font if you want to, depending on whether
-% you're using pdflatex or xelatex/lualatex
-\ifxetexorluatex
-  % If using xelatex or lualatex:
-  \setmainfont{Carlito}
-\else
-  % If using pdflatex:
-  \usepackage[utf8]{inputenc}
-  \usepackage[T1]{fontenc}
-  \usepackage[default]{lato}
-\fi
+\input{setup.tex}
 
 \usepackage{multicol}
 \usepackage{parallel}
 \usepackage[skins,breakable]{tcolorbox}
-\usepackage{paracol}
 \usepackage{parcolumns}
 
-\raggedbottom
-
-% Set the desired heading colors
-\definecolor{headingColor}{HTML}{000000}
-\definecolor{accentColor}{HTML}{ff0000}
-\definecolor{emphasisColor}{HTML}{2E2E2E}
-\definecolor{bodyColor}{HTML}{666666}
-
-\colorlet{heading}{headingColor}
-\colorlet{accent}{accentColor}
-\colorlet{emphasis}{emphasisColor}
-\colorlet{body}{bodyColor}
+%\raggedbottoms
 
 % Change the bullets for itemize and rating marker
 % for \cvskill if you want to
 \renewcommand{\itemmarker}{{\small\textbullet}}
 \renewcommand{\ratingmarker}{\faCircle}
 
+
 %% sample.bib contains your publications
-\addbibresource{Publications.bib}
+%\addbibresource{Publications.bib}
+
+\usepackage{paracol}
 
 \begin{document}
-    \name{Alex Tacescu}
-    \phone{(559) 301-6222}
-    \email{alextac98@gmail.com}
-    \website{www.alextac.com}
-    
-    %\photo{2.5cm}{Photo}
-    
-    \personalinfo{
-        
-        % You can add your own with \printinfo{symbol}{detail}
-        % if you want to add your own symbols, add "academicons" option to \documentclass{resume}
-    }
     
     \makeheading
+    	{Alex Tacescu}
+    	{(559) 301-6222}
+    	{alextac98@gmail.com}
+    	{www.alextac.com}
     
+    \columnratio{0.6, 0.4}
+    \begin{paracol}{2}
+		\begin{leftcolumn}
+			\input{Sections/Skills.tex}
+			
+			\input{Sections/Experience.tex}
+			
+			\input{Sections/Projects.tex}
+		\end{leftcolumn}
+	
+		\begin{rightcolumn}
+			\input{Sections/QualificationsSummary.tex}
+			\input{Sections/Education.tex}
+			\input{Sections/Awards.tex}
+			\input{Sections/Leadership.tex}
+			\input{Sections/Hobbies.tex}
+		\end{rightcolumn}
+    \end{paracol}
     
-    \begin{parcolumns}[colwidths={1=0.62\textwidth, 2=0.35\textwidth}]{2}
-        \colchunk{ 
-            \input{Sections/Skills.tex}
-            \bigskip
-            
-            \input{Sections/Experience.tex}
-            \bigskip
-            
-            \input{Sections/Projects.tex}
-        }
-        \colchunk{
-            \input{Sections/QualificationsSummary.tex}
-            \input{Sections/Education.tex}
-            \input{Sections/Awards.tex}
-            \input{Sections/Leadership.tex}
-            \input{Sections/Hobbies.tex}
-            
-            % \cvachievement{\faTrophy}{Courage I had}{to take a sinking ship and try to make it float}
-            
-            % \divider
-            
-            % \cvachievement{\faHeartbeat}{Persistence \& Loyalty}{I showed despite the hard moments and my willingness to stay with Yahoo after the acquisition}
-            
-            % \divider
-            
-            % \cvachievement{\faLineChart}{Google's Growth}{from a hundred thousand searches per day to over a billion}
-            
-            % \divider
-            
-            % \cvachievement{\faFemale}{Inspiring women in tech}{Youngest CEO on Fortune's list of 50 most powerful women}
-            
-            % \cvsection{Strengths}
-            
-            % \cvtag{Hard-working (18/24)} 
-            % \cvtag{Persuasive}
-            % \cvtag{Motivator \& Leader}
-            
-            % \divider\smallskip
-            
-            % \cvtag{UX}
-            % \cvtag{Mobile Devices \& Applications}
-            % \cvtag{Product Management \& Marketing}
-            
-            % \cvsection{Languages}
-            
-            % \cvskill{English}{5}
-            % % \divider
-            
-            % \cvskill{Spanish}{4}
-            % % \divider
-            
-            % \cvskill{German}{3}
-            
-            
-            % \cvsection{Education}
-            
-            % \cvevent{M.S.\ in Computer Science}{Stanford University}{Sept 1997 -- June 1999}{}
-            
-            % \divider
-            
-            % \cvevent{B.S.\ in Symbolic Systems}{Stanford University}{Sept 1993 -- June 1997}{}
-        }
-    \end{parcolumns}
+%    \begin{parcolumns}[colwidths={1=0.60\textwidth, 2=0.35\textwidth}]{2}
+%        \colchunk{
+%            
+%            
+%            
+%            
+%        }
+%        \colchunk{
+%            \input{Sections/QualificationsSummary.tex}
+%            \input{Sections/Education.tex}
+%            \input{Sections/Awards.tex}
+%            \input{Sections/Leadership.tex}
+%            \input{Sections/Hobbies.tex}
+%        }
+%    \end{parcolumns}
 
 \end{document}
