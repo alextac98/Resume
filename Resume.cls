@@ -198,10 +198,9 @@
     \node[align=center, text width = 2*\innerskill] (0,0) { #2};
   \end{tikzpicture}
 }
-%\progresscircle{85.34}{\textbf{Test 1} \\ seems okay} % Example 1
 
-% v1.1.4: fixes inconsistent font size
-\newcommand{\event}[4]{%
+% 1 = Job Title | 2 = Company | 3 = Time | 4 = Location
+\newcommand{\job}[4]{%
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
   \ifstrequal{#2}{}{}{
