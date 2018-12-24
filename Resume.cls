@@ -185,8 +185,8 @@
 % }}
 
 \newcommand{\resumesection}[2]{
-    \noindent
-    {\color{heading}\Large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[2mm]
+    \smallskip\noindent
+    {\color{heading}\Large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
     {\color{heading}\rule{\linewidth}{1pt}\par}
 }
 
