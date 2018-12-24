@@ -69,16 +69,28 @@
     \website{www.alextac.com} 
     %
     % Create Heading
-    \makeheading
-    %
+    \makeheading \\[-0.6\baselineskip]
+    %    
     % Start body
-    \input{Sections/QualificationsSummary.tex}
-    \smallskip
-    \input{Sections/Skills.tex}
-    \smallskip
+    \columnratio{0.6}
+    \begin{paracol}{2}
+    	\begin{leftcolumn}
+    		\input{Sections/Skills.tex} 
+    	\end{leftcolumn}
+    	\begin{rightcolumn}
+    		\input{Sections/QualificationsSummary.tex}
+    		\smallskip
+    		\input{Sections/Education.tex}
+    		\smallskip
+    		\input{Sections/Leadership.tex}
+    		\smallskip
+    		\input{Sections/Hobbies.tex}
+    	\end{rightcolumn}
+    \end{paracol}
+    
+    
+    
     \input{Sections/Experience.tex}
-    \smallskip
-    \input{Sections/Education.tex}
     \smallskip
     \input{Sections/Projects.tex}
     \smallskip

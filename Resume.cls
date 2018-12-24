@@ -152,7 +152,7 @@
     \begin{minipage}{0.31\textwidth}
         \large\bfseries\centering{\@website}
     \end{minipage}
-  \endgroup\medskip
+  \endgroup
 }
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
