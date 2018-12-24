@@ -171,8 +171,15 @@
     \resumesubsection{#1:} {#2}
 }
 
-\newcommand{\education}[3]{
-	
+% 1 = Degree | 2 = College | 3 = Dates | 4 = GPA
+\newcommand{\school}[4]{
+	{\large\color{emphasis}#1\par}
+	\normalsize
+	\ifstrequal{#2}{}{}{
+		\textbf{\color{accent}#2}\par
+		\smallskip}
+	\ifstrequal{#3}{}{}{\small\raggedleft{Graduation: #3}} \hfill \ifstrequal{#4}{}{}{{\small\raggedright{GPA: #4}}}\par
+	\medskip\normalsize
 	
 	
 }
