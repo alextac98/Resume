@@ -134,14 +134,10 @@
 
 \newcommand{\makeheading}{
   \begingroup
-    \ifdef{\@photodiameter}{\begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}}{}%
-    \raggedright\color{emphasis}%
-    {\Huge\centering\bfseries\MakeUppercase{\@name}\par}
+    \color{heading}\huge\centering\bfseries\MakeUppercase{\@name} \\[-0.6\baselineskip]
+    \color{heading}\rule{\linewidth}{2pt}\par
     \medskip
-    {\color{heading}\rule{\linewidth}{2pt}\par}
-    \medskip
-    
-    \begin{minipage}{0.31\textwidth}
+    \begin{minipage}{0.32\textwidth}
         \large\bfseries\centering{\@phone}
     \end{minipage}%
     \begin{minipage}{0.02\textwidth}
@@ -156,44 +152,15 @@
     \begin{minipage}{0.31\textwidth}
         \large\bfseries\centering{\@website}
     \end{minipage}
-    
-    % {\large\bfseries\@personalinfo\par}
-    
-    \ifdef{\@photodiameter}{%
-    \end{minipage}\hfill%
-    \begin{minipage}{\@photodiameter}
-    \if@normalphoto
-      \includegraphics[width=\linewidth]{\@photo}
-    \else
-      \tikz\path[fill overzoom image={\@photo}]circle[radius=0.5\linewidth];
-    \fi%
-    \end{minipage}\par}{}%
   \endgroup\medskip
 }
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
-% \newcommand{\resumesection}[2]{{%
-%   \par\bigskip
-%   \setlength{\arrayrulewidth}{1pt}%
-%   \color{heading}%
-%   \noindent\begin{tabularx}{\linewidth}{@{} X @{}}
-%     \LARGE\bfseries\MakeUppercase{#1}\hfill\normalsize\bfseries #2 \\
-%     \hline
-%   \end{tabularx}%
-%   \par\nobreak\medskip
-% }}
-
 \newcommand{\resumesection}[2]{
     \smallskip\noindent
-    {\color{heading}\Large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
+    {\color{heading}\large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
     {\color{heading}\rule{\linewidth}{1pt}\par}
-}
-
-\newcommand{\cvsection}[2]{
-    \bigskip\noindent
-    {\color{heading}\LARGE\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2} \\[-0.6\baselineskip]}
-    {\color{heading}\rule{\textwidth}{1pt}\par}
 }
 
 \newcommand{\resumesubsection}[1]{%
@@ -202,6 +169,12 @@
 
 \newcommand{\skillsection}[2]{
     \resumesubsection{#1:} {#2}
+}
+
+\newcommand{\education}[3]{
+	
+	
+	
 }
 
 % Skills Circle
