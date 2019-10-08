@@ -6,3 +6,7 @@
 *synctex*
 *.bbl
 *.blg
+*.fdb_latexmk
+*.fls
+
+*.code-workspace
