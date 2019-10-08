@@ -159,9 +159,9 @@
 
 % 1 = Title | 2 = Side Text
 \newcommand{\resumesection}[2]{
-    \newline\noindent
-    {\color{heading}\large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
-    {\color{heading}\rule{\linewidth}{1pt}}
+  \noindent
+  {\color{heading}\large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
+  {\color{heading}\rule{\linewidth}{1pt}}
 }
 
 \newcommand{\resumesubsection}[1]{%
@@ -174,15 +174,18 @@
 
 % 1 = Degree | 2 = College | 3 = Dates | 4 = GPA
 \newcommand{\school}[4]{
-	{\large\color{emphasis}#1\par}
+	{\large\color{emphasis}#1}
 	\normalsize
 	\ifstrequal{#2}{}{}{
-		\textbf{\color{accent}#2}\par
-		\smallskip}
-	\ifstrequal{#3}{}{}{\small{Graduation: #3}} \hfill \ifstrequal{#4}{}{}{{\small{GPA: #4}}}\par
-	\medskip\normalsize
-	
-	
+		  \textbf{\color{accent}#2}\newline\smallskip
+    }
+	  \ifstrequal{#3}{}{}{
+      \normalsize{Graduation: #3}
+    } \hfill
+    \ifstrequal{#4}{}{}{
+      {\normalsize{GPA: #4}}
+    } \hfill
+	  \medskip\normalsize
 }
 
 % Skills Circle
@@ -219,7 +222,7 @@
 }
 
 \newcommand{\project}[3]{
-	{\resumesubsection{#2: #1} \normalsize\color{body}#3}\\
+	{\resumesubsection{#2: #1} \normalsize\color{body}#3}\newline
 }
 
 \newcommand{\leadership}[2]{
