@@ -152,13 +152,14 @@
     \begin{minipage}{0.31\textwidth}
         \large\bfseries\centering{\@website}
     \end{minipage}
-  \endgroup\medskip
+  \endgroup\\
 }
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
+% 1 = Title | 2 = Side Text
 \newcommand{\resumesection}[2]{
-    \smallskip\noindent
+    \noindent
     {\color{heading}\large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
     {\color{heading}\rule{\linewidth}{1pt}}
 }
@@ -201,10 +202,10 @@
 
 % 1 = Job Title | 2 = Company | 3 = Time | 4 = Location
 \newcommand{\job}[4]{%
-  {\large\color{emphasis}#1\par}
+  {\large\color{emphasis}#1\newline}
   \smallskip\normalsize
   \ifstrequal{#2}{}{}{
-  \textbf{\color{accent}#2}\par
+  \textbf{\color{accent}#2}\newline
   \smallskip}
   \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#3}}}%
   \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
