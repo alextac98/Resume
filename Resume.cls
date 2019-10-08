@@ -152,14 +152,14 @@
     \begin{minipage}{0.31\textwidth}
         \large\bfseries\centering{\@website}
     \end{minipage}
-  \endgroup\\
+  \endgroup
 }
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
 % 1 = Title | 2 = Side Text
 \newcommand{\resumesection}[2]{
-    \noindent
+    \newline\noindent
     {\color{heading}\large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
     {\color{heading}\rule{\linewidth}{1pt}}
 }
@@ -202,14 +202,20 @@
 
 % 1 = Job Title | 2 = Company | 3 = Time | 4 = Location
 \newcommand{\job}[4]{%
-  {\large\color{emphasis}#1\newline}
-  \smallskip\normalsize
+  {\noindent\large\color{emphasis}#1}
+  % \smallskip\normalsize
+  % \hfill
   \ifstrequal{#2}{}{}{
-  \textbf{\color{accent}#2}\newline
+    \textbf{\color{accent}#2}\newline
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
-  \medskip\normalsize
+  % \ifstrequal{#3}{}{}{#3}
+  \ifstrequal{#3}{}{}{
+    {\small\makebox[0.4\linewidth][l]{\faCalendar\hspace{0.5em}#3}}
+  }%
+  \ifstrequal{#4}{}{}{
+    {\small\makebox[0.4\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}
+  }
+  % \medskip\normalsize
 }
 
 \newcommand{\project}[3]{
