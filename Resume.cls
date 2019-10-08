@@ -157,10 +157,11 @@
 
 \renewenvironment{quote}{\color{accent}\itshape\large}{\par}
 
+% 1 = Title | 2 = Side Text
 \newcommand{\resumesection}[2]{
-    \smallskip\noindent
-    {\color{heading}\large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
-    {\color{heading}\rule{\linewidth}{1pt}}
+  \noindent
+  {\color{heading}\large\bfseries\MakeUppercase{#1} \hfill \color{heading}\normalsize\bfseries{#2}} \\[-0.6\baselineskip]
+  {\color{heading}\rule{\linewidth}{1pt}}
 }
 
 \newcommand{\resumesubsection}[1]{%
@@ -173,15 +174,18 @@
 
 % 1 = Degree | 2 = College | 3 = Dates | 4 = GPA
 \newcommand{\school}[4]{
-	{\large\color{emphasis}#1\par}
+	{\large\color{emphasis}#1}
 	\normalsize
 	\ifstrequal{#2}{}{}{
-		\textbf{\color{accent}#2}\par
-		\smallskip}
-	\ifstrequal{#3}{}{}{\small{Graduation: #3}} \hfill \ifstrequal{#4}{}{}{{\small{GPA: #4}}}\par
-	\medskip\normalsize
-	
-	
+		  \textbf{\color{accent}#2}\newline\smallskip
+    }
+	  \ifstrequal{#3}{}{}{
+      \normalsize{Graduation: #3}
+    } \hfill
+    \ifstrequal{#4}{}{}{
+      {\normalsize{GPA: #4}}
+    } \hfill
+	  \medskip\normalsize
 }
 
 % Skills Circle
@@ -201,18 +205,24 @@
 
 % 1 = Job Title | 2 = Company | 3 = Time | 4 = Location
 \newcommand{\job}[4]{%
-  {\large\color{emphasis}#1\par}
-  \smallskip\normalsize
+  {\noindent\large\color{emphasis}#1}
+  % \smallskip\normalsize
+  % \hfill
   \ifstrequal{#2}{}{}{
-  \textbf{\color{accent}#2}\par
+    \textbf{\color{accent}#2}\newline
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
-  \medskip\normalsize
+  % \ifstrequal{#3}{}{}{#3}
+  \ifstrequal{#3}{}{}{
+    {\small\makebox[0.4\linewidth][l]{\faCalendar\hspace{0.5em}#3}}
+  }%
+  \ifstrequal{#4}{}{}{
+    {\small\makebox[0.4\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}
+  }
+  % \medskip\normalsize
 }
 
 \newcommand{\project}[3]{
-	{\resumesubsection{#2: #1} \normalsize\color{body}#3}\\
+	{\resumesubsection{#2: #1} \normalsize\color{body}#3}\newline
 }
 
 \newcommand{\leadership}[2]{
