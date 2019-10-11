@@ -100,6 +100,16 @@
 \RequirePackage{hyperref}
 \RequirePackage{paracol}
 
+% See document here: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/hyperref/doc/options.pdf
+\hypersetup{
+  colorlinks=true,
+  % linkbordercolor=red,
+  % linkcolor=red,
+  urlcolor=blue,
+  % filecolor=red,
+  % pdfborderstyle={/S/U/W 1},
+}
+
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
 
@@ -121,8 +131,8 @@
 
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\phone}[1]{\def\@phone{\printinfo{\phonesymbol}{#1}}}
-\newcommand{\email}[1]{\def\@email{\href{mailto:#1}{\printinfo{\mailsymbol}{#1}}}}
-\newcommand{\website}[1]{\def\@website{\href{https://#1}{\printinfo{\homepagesymbol}{#1}}}}
+\newcommand{\email}[1]{\def\@email{\href{mailto:#1}{\color{heading}\printinfo{\mailsymbol}{#1}}}}
+\newcommand{\website}[1]{\def\@website{\href{https://#1}{\color{heading}\printinfo{\homepagesymbol}{#1}}}}
 
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
 \newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
@@ -203,21 +213,29 @@
   \end{tikzpicture}
 }
 
-% 1 = Job Title | 2 = Company | 3 = Time | 4 = Location
-\newcommand{\job}[4]{%
-  {\noindent\large\color{emphasis}#1}
-  % \smallskip\normalsize
-  % \hfill
-  \ifstrequal{#2}{}{}{
-    \textbf{\color{accent}#2}\newline
-  \smallskip}
-  % \ifstrequal{#3}{}{}{#3}
-  \ifstrequal{#3}{}{}{
-    {\small\makebox[0.4\linewidth][l]{\faCalendar\hspace{0.5em}#3}}
-  }%
-  \ifstrequal{#4}{}{}{
-    {\small\makebox[0.4\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}
+% 1 = Job Title | 2 = Company | 3 = Time | 4 = Location | 5 = Logo
+\newcommand{\job}[5]{
+  \begin{minipage}[b]{0.7\linewidth}
+    {\noindent\large\color{emphasis}#1}
+    % \smallskip\normalsize
+    % \hfill
+    \ifstrequal{#2}{}{}{
+      \textbf{\color{accent}#2}\newline
+    \smallskip}
+    % \ifstrequal{#3}{}{}{#3}
+    \ifstrequal{#3}{}{}{
+      {\small\makebox[0.4\linewidth][l]{\faCalendar\hspace{0.5em}#3}}
+    }%
+    \ifstrequal{#4}{}{}{
+      {\small\makebox[0.4\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}
   }
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.3\linewidth}
+    \centering\includegraphics[height=25pt]{#5}
+    \smallskip
+  \end{minipage}
+ 
   % \medskip\normalsize
 }
 
