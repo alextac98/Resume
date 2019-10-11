@@ -100,6 +100,16 @@
 \RequirePackage{hyperref}
 \RequirePackage{paracol}
 
+% See document here: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/hyperref/doc/options.pdf
+\hypersetup{
+  colorlinks=true,
+  % linkbordercolor=red,
+  % linkcolor=red,
+  urlcolor=blue,
+  % filecolor=red,
+  % pdfborderstyle={/S/U/W 1},
+}
+
 \setlength{\parindent}{0pt}
 \newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
 
@@ -121,8 +131,8 @@
 
 \newcommand{\name}[1]{\def\@name{#1}}
 \newcommand{\phone}[1]{\def\@phone{\printinfo{\phonesymbol}{#1}}}
-\newcommand{\email}[1]{\def\@email{\href{mailto:#1}{\printinfo{\mailsymbol}{#1}}}}
-\newcommand{\website}[1]{\def\@website{\href{https://#1}{\printinfo{\homepagesymbol}{#1}}}}
+\newcommand{\email}[1]{\def\@email{\href{mailto:#1}{\color{heading}\printinfo{\mailsymbol}{#1}}}}
+\newcommand{\website}[1]{\def\@website{\href{https://#1}{\color{heading}\printinfo{\homepagesymbol}{#1}}}}
 
 \newcommand{\tagline}[1]{\def\@tagline{#1}}
 \newcommand{\twitter}[1]{\printinfo{\twittersymbol}{#1}}
