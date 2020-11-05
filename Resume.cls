@@ -243,6 +243,11 @@
 	{\resumesubsection{#2: #1} \normalsize\color{body}#3}\newline
 }
 
+\newcommand{\award}[2]{
+  \resumesubsection{#1 } {#2}
+  \newline
+}
+
 \newcommand{\leadership}[2]{
 	\resumesubsection{#1 } {#2}
 }
