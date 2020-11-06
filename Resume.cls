@@ -111,7 +111,9 @@
 }
 
 \setlength{\parindent}{0pt}
-\newcommand{\divider}{\textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}\medskip}
+\newcommand{\divider}{
+  \textcolor{body!30}{\hdashrule{\linewidth}{0.6pt}{0.5ex}}
+  }
 
 \newenvironment{fullwidth}{%
   \begin{adjustwidth}{}{\dimexpr-\marginparwidth-\marginparsep\relax}}
@@ -216,7 +218,8 @@
 % 1 = Job Title | 2 = Company | 3 = Time | 4 = Location | 5 = Logo
 \newcommand{\job}[5]{
   \begin{minipage}[b]{0.7\linewidth}
-    {\noindent\large\color{emphasis}#1}
+    \vspace{1mm}
+    {\large\color{emphasis}#1}
     % \smallskip\normalsize
     % \hfill
     \ifstrequal{#2}{}{}{
@@ -235,8 +238,6 @@
     \centering\includegraphics[height=25pt]{#5}
     \smallskip
   \end{minipage}
- 
-  % \medskip\normalsize
 }
 
 \newcommand{\project}[3]{
