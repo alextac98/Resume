@@ -4,6 +4,7 @@ RUN apt update && apt upgrade -y
 
 RUN apt install -y --no-install-recommends \
     nano \
+    vim \
     git \
     ssh-client
 
