@@ -1,4 +1,3 @@
-version: "3.8"
 services:
     latex:
         container_name: resume-latex
@@ -14,4 +13,4 @@ services:
         stdin_open: true # docker run -i
         tty: true        # docker run -t
         hostname: latex-ws
-        user: user
+        # user: "501:20"

@@ -39,10 +39,10 @@
 	"shutdownAction": "stopCompose",
 
 	// Run command locally before connecting to container
-	"initializeCommand": "bash .devcontainer/init_script.sh",
+	// "initializeCommand": "bash .devcontainer/init_script.sh",
 
-	"postCreateCommand": "bash .devcontainer/postcreate_script.sh",
+	// "postCreateCommand": "bash .devcontainer/postcreate_script.sh",
 
 	// Uncomment to connect as a non-root user if you've added one. See https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "user",
+	// "remoteUser": "user",
 }
